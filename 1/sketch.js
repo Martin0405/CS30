@@ -5,19 +5,18 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let rectheight = 40;
+let x,y,rWidth,rHeight;
+let rLeft, rRight, rTop, rBottom;
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  x=width/2; y = height /2
+  rWidth =200; rHeight =100;
 }
 
 function draw() {
-fbackground();
+drawrectangle();
 }
-function fbackground(){
-  let y = 0;
-  while (y < height){
-    fill(map(y,0,height,0,225))
-rect(0,y,width,rectheight)
-y+=rectheight;
-  }
-}
+function drawrectangle(){
+
+rect(x,y,rWidth,rHeight)
+ }
