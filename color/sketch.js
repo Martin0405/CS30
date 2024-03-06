@@ -22,24 +22,24 @@ function draw() {
 function fbackground() {
   let y = 0; 
 
-  while (y <= height) {
+  while (y+rectheight <= height) {
 
   
-    while (x<=width) {
+    while (x+rectheight<=width) {
  a = random(0,255);
  b = random(0,255);
  c = random(0,255);
        fill(a,b,c)
       rect(x, y, rectheight, rectheight)
-      x += rectheight;
+     x += rectheight;
     }
     x=0
     y += rectheight;
-  
+
   }
-}
+} 
 function mousePressed()
-{ 
+{ background(1)
   if (mouseButton===LEFT)
   rectheight+=10;  
  if(mouseButton===RIGHT && rectheight>10 )
