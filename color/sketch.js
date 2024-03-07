@@ -1,16 +1,17 @@
-// Project Title
-// Your Name
-// Date
+// RANDOM COLOR
+// Martin
+// 3/7/2024
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// random color squre
 
+//set variable
 let rectheight = 40;
 let x = 0;
 let a = 0;
 let b = 0;
 let c = 0;
-
+//set canvas and background
 function setup() {
   createCanvas(windowWidth, windowHeight);
   fbackground();
@@ -19,6 +20,7 @@ function setup() {
 function draw() {
 
 }
+// function to draw background and fit random color in to it
 function fbackground() {
   let y = 0; 
 
@@ -29,7 +31,7 @@ function fbackground() {
  a = random(0,255);
  b = random(0,255);
  c = random(0,255);
-       fill(a,b,c)
+       fill(a,b,255)
       rect(x, y, rectheight, rectheight)
      x += rectheight;
     }
@@ -38,6 +40,7 @@ function fbackground() {
 
   }
 } 
+// change color when mouse preesed and become larger when left press smaller when right press
 function mousePressed()
 { background(1)
   if (mouseButton===LEFT)
@@ -47,6 +50,7 @@ function mousePressed()
  
 fbackground()
 }
+// change color when keyboard is pressed
 function keyPressed()
 {
   fbackground()
