@@ -16,6 +16,7 @@ let x =0;
 let greyTime = 0;
 while (x< width){
   let greyVaulue = random(0, 255);
+  let b = random(0,255);
   greyVaulue = noise(greyTime);
   greyVaulue = map(greyVaulue,0,1,0,255)
   greyTime+=.1;
