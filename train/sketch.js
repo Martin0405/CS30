@@ -9,7 +9,7 @@ let rectWidth = 1;
 let t = 1;
 //t=time
 let alength = 0;
-
+//set up canvas to window size
 function setup() {
 
   createCanvas(windowWidth, windowHeight);

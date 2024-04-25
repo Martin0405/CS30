@@ -1,33 +1,38 @@
 // Generative Art - Repetition
-// Mr. Scott
-// March 25, 2024
+// Martin
+// 04/25, 2024
 
+let xlength;
+let ylength;
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  noLoop(); //just for now
+  noLoop();
   background(255);
   angleMode(DEGREES);
-  stroke(0, 80);
+  strokeWeight(10);
 }
 
-function randomElement(currentLen) {
-  //create one irregular line using
-  //rotate transformations
-  push();  //isolate the coordinate transforms
-  rotate(random(360));
-  while (currentLen > 5) {
-    rotate(random(-40, 40));
-    line(0, 0, 0, currentLen);
-    translate(0, currentLen);
-    currentLen *= 0.75;
+function randomElement() {
+  let startpointx = random(-300, 300)
+  let startpointy = random(-300, 300)
+  xlength = random(0, 40);
+  if (dist(startpointx, startpointy, 0, 0) < 300) {
+    line(startpointx, startpointy, startpointx + xlength, startpointy);
   }
-  pop();
+}
+function randomElement2() {
+  let startpointx = random(-300, 300)
+  let startpointy = random(-300, 300)
+  ylength = random(0, 40);
+  if (dist(startpointx, startpointy, 0, 0) < 300) {
+    line(startpointx, startpointy, startpointx, startpointy + ylength);
+  }
 }
 
 function draw() {
   translate(width / 2, height / 2);
-  for (let i = 0; i < 100000; i++) {
-    randomElement(random(20,70));
+  for (let i = 0; i < 200; i++) {
+    randomElement();
+    randomElement2();
   }
-
 }
