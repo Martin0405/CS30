@@ -9,8 +9,17 @@ let y;
   let x=0;
   let direction=0
   let mazetimer=2
-  let mazeendtime=100
+  let mazeendtime=10
   let speed =99
+  let grid =
+  [[255, 0, 255, 0, 255],
+  [0, 255, 0, 255, 0]
+  ];
+  const NUM_ROWS = 2; const NUM_COLS = 5;
+
+let row, col;
+
+  let squareSize = 20;
 function setup() {
   createCanvas(windowWidth, windowHeight);  
     angleMode(DEGREES);
@@ -27,8 +36,10 @@ function setup() {
     y=(windowHeight/2)*sin(45)+sin(45)*-100
 }
 
-function draw() {
+function draw() { 
+   finishedline()
   mazecreater()
+let cams=1000
 
 }
 function mazecreater(){
@@ -56,3 +67,17 @@ if(direction === 0){
 
  }
 } 
+function finishedline(){
+  push();
+  if (direction===1){
+  rotate(45)}
+  else rotate(-45)
+  for (let row = 0; row < NUM_ROWS; row++) {
+    for (let col = 0; col < NUM_COLS; col++) {
+      let fillValue = grid[row][col];
+      fill(fillValue);
+      square(x+col* squareSize, y+row * squareSize, squareSize);
+    }
+  }
+  pop();
+}
