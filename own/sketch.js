@@ -34,6 +34,7 @@ function setup() {
     square(0,0,100000)
     pop();
     y=(windowHeight/2)*sin(45)+sin(45)*-100
+    noSmooth()
 }
 
 function draw() { 
@@ -69,15 +70,20 @@ if(direction === 0){
 } 
 function finishedline(){
   push();
+  mazeendtime-=1
+  if(mazeendtime===0){
+   speed=0}
   if (direction===1){
   rotate(45)}
   else rotate(-45)
+  if(speed===0){
   for (let row = 0; row < NUM_ROWS; row++) {
     for (let col = 0; col < NUM_COLS; col++) {
       let fillValue = grid[row][col];
       fill(fillValue);
       square(x+col* squareSize, y+row * squareSize, squareSize);
+      print(x,y)
     }
-  }
+  }}
   pop();
 }
