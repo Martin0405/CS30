@@ -177,10 +177,10 @@ class EasyCam {
 
       button : 0,
 
-      mouseDragLeft   : cam.mouseDragRotate.bind(cam),
-      mouseDragCenter : cam.mouseDragPan   .bind(cam),
-      mouseDragRight  : cam.mouseDragZoom  .bind(cam),
-      mouseWheelAction: cam.mouseWheelZoom .bind(cam),
+      //mouseDragLeft   : cam.mouseDragRotate.bind(cam),
+      //mouseDragCenter : cam.mouseDragPan   .bind(cam),
+      //mouseDragRight  : cam.mouseDragZoom  .bind(cam),
+      //mouseWheelAction: cam.mouseWheelZoom .bind(cam),
 
       touchmoveSingle : cam.mouseDragRotate.bind(cam),
       touchmoveMulti  : function(){

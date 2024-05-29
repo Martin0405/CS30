@@ -5,7 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let y;
+/*let y;
   let x=0;
   let direction=0
   let mazetimer=2
@@ -24,7 +24,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);  
     angleMode(DEGREES);
     push();
-    rotate(45);
     fill(0)
     square(0,0,100000)
     pop();
@@ -86,4 +85,89 @@ function finishedline(){
     }
   }}
   pop();
+}
+// Using PeasyCam for 2D Camera Only
+ 
+// By Default, mouse buttons are bound to camera movements (Rotate, Pan, Zoom)
+// Since it wasn't obvious how to disable this behavior through a library method,
+// I found it worked easily enough to modify the library. Comment out lines
+// 180-183 in p5.easycam.js to disable this behavior. Then if we are careful with
+// camera moves, we can keep everything lined up against the 2D plane.
+*/
+
+let easycam;
+let playerX, playerY;
+let x; 
+let y;
+let timer = 200;
+let direction = 0;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  setAttributes('antialias', true);
+ x= 0;
+  y = 0;
+  easycam = createEasyCam();
+  angleMode(DEGREES)
+
+  playerX = 0;
+  playerY = 0;
+  mazecreater()
+}
+
+let tiles = []
+function draw() {
+  //Level
+  background(0);
+  fill(255);
+  mazedraw()
+  square(0, 0, 300);
+
+  //Character Movement
+  if (keyIsDown(65)) {  //A
+    playerX -= 5;
+  }
+  if (keyIsDown(68)) {  //D
+    playerX += 5;
+  }
+
+  //Character Draw
+  fill(0);
+  square(playerX, playerY, 20);
+
+  //Camera
+  if (keyIsDown(LEFT_ARROW)) {
+    easycam.panX(10);
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    easycam.panX(-10);
+  }
+
+}
+
+function mazecreater(){
+  while (timer >= 0) {
+    x += 50;
+    direction = int(random(0, 2))
+    if (direction === 0) {
+      y += 50;
+      print(y)
+    }
+    if (direction === 1) {
+      y -= 50;
+    }
+    tiles.push(createVector(x, y))
+
+    timer--;
+  }
+} 
+function mazedraw(){
+for(let t of tiles){
+  push();
+  translate(t.x,t.y)
+  rotate(45)
+  square(0,0,50)
+  pop();
+}
+
 }
