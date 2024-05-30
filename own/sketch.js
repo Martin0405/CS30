@@ -99,9 +99,18 @@ let easycam;
 let playerX, playerY;
 let x; 
 let y;
-let timer = 200;
+let timer = 5;
 let direction = 0;
+let grid =
+[[255, 0, 255, 0, 255],
+[0, 255, 0, 255, 0]
+];
+let mazeendtime=10
+let speed =99
+let squareSize=20
+const NUM_ROWS = 2; const NUM_COLS = 5;
 
+let row, col;
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   setAttributes('antialias', true);
@@ -117,11 +126,13 @@ function setup() {
 
 let tiles = []
 function draw() {
+  //finishedline()
+  noStroke();
   //Level
   background(0);
   fill(255);
   mazedraw()
-  square(0, 0, 300);
+  finishedline();
 
   //Character Movement
   if (keyIsDown(65)) {  //A
@@ -132,8 +143,7 @@ function draw() {
   }
 
   //Character Draw
-  fill(0);
-  square(playerX, playerY, 20);
+ 
 
   //Camera
   if (keyIsDown(LEFT_ARROW)) {
@@ -147,16 +157,15 @@ function draw() {
 
 function mazecreater(){
   while (timer >= 0) {
-    x += 50;
+    x += sqrt((100*100)/2);
     direction = int(random(0, 2))
     if (direction === 0) {
-      y += 50;
-      print(y)
+      y += sqrt((100*100)/2);
     }
     if (direction === 1) {
-      y -= 50;
+      y -= sqrt((100*100)/2);
     }
-    tiles.push(createVector(x, y))
+    tiles.push([x, y])
 
     timer--;
   }
@@ -164,10 +173,29 @@ function mazecreater(){
 function mazedraw(){
 for(let t of tiles){
   push();
-  translate(t.x,t.y)
+  translate(t[0],t[1])
   rotate(45)
-  square(0,0,50)
+  square(0,0,100)
   pop();
 }
-
 }
+
+function finishedline(){
+  push();
+  translate(tiles[5][0], tiles[5][1])
+  if (direction===1){
+    rotate(45)
+     for (let row = 0; row < NUM_ROWS; row++) {
+    for (let col = 0; col < NUM_COLS; col++) {
+      fill(grid[row][col]);
+      square(0+col* squareSize,0+row * squareSize,squareSize);
+  }}}
+  else {rotate(-45)
+  
+  for (let row = 0; row < NUM_ROWS; row++) {
+    for (let col = 0; col < NUM_COLS; col++) {
+      fill(grid[row][col]);
+      square(-100+col* squareSize,100+row * squareSize,squareSize);
+  
+    }
+  }}pop();}
