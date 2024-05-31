@@ -99,14 +99,14 @@ let easycam;
 let playerX, playerY;
 let x; 
 let y;
-let timer = 5;
+let timer = 200;
 let direction = 0;
 let grid =
 [[255, 0, 255, 0, 255],
 [0, 255, 0, 255, 0]
 ];
 let mazeendtime=10
-let speed =99
+let speed =5
 let squareSize=20
 const NUM_ROWS = 2; const NUM_COLS = 5;
 
@@ -122,6 +122,7 @@ function setup() {
   playerX = 0;
   playerY = 0;
   mazecreater()
+
 }
 
 let tiles = []
@@ -133,14 +134,16 @@ function draw() {
   fill(255);
   mazedraw()
   finishedline();
+  print(mouseX,mouseY)
+  mazecharacter()
 
   //Character Movement
-  if (keyIsDown(65)) {  //A
-    playerX -= 5;
-  }
-  if (keyIsDown(68)) {  //D
-    playerX += 5;
-  }
+ // if (keyIsDown(65)) {  //A
+   // playerX -= 5;
+ // }
+  //if (keyIsDown(68)) {  //D
+  //  playerX += 5;
+  //}
 
   //Character Draw
  
@@ -156,7 +159,8 @@ function draw() {
 }
 
 function mazecreater(){
-  while (timer >= 0) {
+tiles.push([x, y])
+  while (timer >= 0) {  
     x += sqrt((100*100)/2);
     direction = int(random(0, 2))
     if (direction === 0) {
@@ -182,7 +186,7 @@ for(let t of tiles){
 
 function finishedline(){
   push();
-  translate(tiles[5][0], tiles[5][1])
+  translate(tiles[201][0], tiles[201][1])
   if (direction===1){
     rotate(45)
      for (let row = 0; row < NUM_ROWS; row++) {
@@ -199,3 +203,15 @@ function finishedline(){
   
     }
   }}pop();}
+  function mazecharacter(){
+   push();
+    rotate(45);
+    fill(0,0,255)
+    square(playerX,playerY)
+  if(mouseIsPressed){
+    playerX+=speed
+   }
+   else playerY-=speed
+   square(playerX,playerY,10)
+   pop();
+    } 
