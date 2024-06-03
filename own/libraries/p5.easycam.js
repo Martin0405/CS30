@@ -288,11 +288,11 @@ class EasyCam {
 
       dblclick : function(event){
         // Account for canvas shift:
-        var offX = cam.offset[0] - window.scrollX,
+       var offX = cam.offset[0] - window.scrollX,
             offY = cam.offset[1] - window.scrollY;
 
         if(cam.mouse.insideViewport(event.x - offX, event.y - offY)){
-          cam.reset();
+          //cam.reset();
         }
       },
 

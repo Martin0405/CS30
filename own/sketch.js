@@ -137,24 +137,13 @@ function draw() {
   print(mouseX,mouseY)
   mazecharacter()
 
-  //Character Movement
- // if (keyIsDown(65)) {  //A
-   // playerX -= 5;
- // }
-  //if (keyIsDown(68)) {  //D
-  //  playerX += 5;
-  //}
 
-  //Character Draw
  
 
   //Camera
-  if (keyIsDown(LEFT_ARROW)) {
-    easycam.panX(10);
-  }
-  if (keyIsDown(RIGHT_ARROW)) {
-    easycam.panX(-10);
-  }
+
+    easycam.panX(sqrt((5*5)/2));
+
 
 }
 
@@ -213,5 +202,7 @@ function finishedline(){
    }
    else playerY-=speed
    square(playerX,playerY,10)
+print(get(mouseX,mouseY))
    pop();
     } 
+  
