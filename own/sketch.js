@@ -134,8 +134,9 @@ function draw() {
   fill(255);
   mazedraw()
   finishedline();
-  print(mouseX,mouseY)
+  print("mouse: ",mouseX,mouseY,get(mouseX,mouseY),"\t player: ",get(windowWidth/2,windowHeight/2),windowWidth/2,windowHeight/2);
   mazecharacter()
+
 
 
  
@@ -143,7 +144,11 @@ function draw() {
   //Camera
 
     easycam.panX(sqrt((5*5)/2));
-
+    if(mouseIsPressed){
+    easycam.panY(sqrt((5*5)/2));
+    }
+    else
+    easycam.panY(-sqrt((5*5)/2));
 
 }
 
@@ -202,7 +207,10 @@ function finishedline(){
    }
    else playerY-=speed
    square(playerX,playerY,10)
-print(get(mouseX,mouseY))
+   if (get(windowWidth/2,windowHeight/2)===(0)){
+    print("game over")
+   }
+
    pop();
     } 
   
