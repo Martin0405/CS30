@@ -134,9 +134,8 @@ function draw() {
   fill(255);
   mazedraw()
   finishedline();
-  print("mouse: ",mouseX,mouseY,get(mouseX,mouseY),"\t player: ",get(windowWidth/2,windowHeight/2),windowWidth/2,windowHeight/2);
   mazecharacter()
-
+  print(get(windowWidth/2,windowHeight/2))
 
 
  
@@ -177,6 +176,9 @@ for(let t of tiles){
   pop();
 }
 }
+function preload() {
+  font = loadFont('assets/bahnschrift.ttf');
+}
 
 function finishedline(){
   push();
@@ -207,10 +209,14 @@ function finishedline(){
    }
    else playerY-=speed
    square(playerX,playerY,10)
-   if (get(windowWidth/2,windowHeight/2)===(0)){
-    print("game over")
+   if (get(windowWidth/2,windowHeight/2)[0]===0){
+    rotate(-45)
+    textFont(font);
+    textSize(24);
+      fill(255,0,0)
+      text('game over', playerX,playerY);
    }
 
    pop();
     }
-    //
+  
