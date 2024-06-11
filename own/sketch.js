@@ -203,20 +203,35 @@ function finishedline(){
    push();
     rotate(45);
     fill(0,0,255)
-    square(playerX,playerY)
-  if(mouseIsPressed){
-    playerX+=speed
-   }
-   else playerY-=speed
-   square(playerX,playerY,10)
-   if (get(windowWidth/2,windowHeight/2)[0]===0){
-    rotate(-45)
+    square(playerX,playerY) 
+      if (get(windowWidth/2,windowHeight/2)[0]===0){
     textFont(font);
     textSize(24);
       fill(255,0,0)
       text('game over', playerX,playerY);
    }
+  if(mouseIsPressed){
+    playerX+=speed
+   }
+   else playerY-=speed
+   square(playerX,playerY,10)
+
 
    pop();
     }
-  
+   /* if ( square(playerX,playerY,10)==="BLUE")
+    {
+      easycam.panX(sqrt((5*5)/2));
+      if(mouseIsPressed){
+      easycam.panY(sqrt((5*5)/2));
+      }
+      else
+      easycam.panY(-sqrt((5*5)/2));
+      if(mouseIsPressed){
+        playerX+=speed
+       }
+       else playerY-=speed
+       square(playerX,playerY,10)
+    
+    }
+    else */
