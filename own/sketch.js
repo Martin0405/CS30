@@ -5,95 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-/*let y;
-  let x=0;
-  let direction=0
-  let mazetimer=2
-  let mazeendtime=10
-  let speed =99
-  let grid =
-  [[255, 0, 255, 0, 255],
-  [0, 255, 0, 255, 0]
-  ];
-  const NUM_ROWS = 2; const NUM_COLS = 5;
 
-let row, col;
-
-  let squareSize = 20;
-function setup() {
-  createCanvas(windowWidth, windowHeight);  
-    angleMode(DEGREES);
-    push();
-    fill(0)
-    square(0,0,100000)
-    pop();
-    push();
-    rotate(-45);
-    fill(0)
-    square(0,0,100000)
-    pop();
-    y=(windowHeight/2)*sin(45)+sin(45)*-100
-    noSmooth()
-}
-
-function draw() { 
-   finishedline()
-  mazecreater()
-let cams=1000
-
-}
-function mazecreater(){
-  push();
-  noStroke()
-  rotate(45);
-  fill(255)
-if(direction === 0){
- 
- 
-   x+=speed
- }
- else y-=speed
- square(x,y,100)
- pop();
- mazetimer-=1
- if (mazetimer ===0){
-  mazetimer=2
-  direction=int(random(0,2))
- }
- mazeendtime-=1
- if(mazeendtime===0){
-  speed=0
-
-
- }
-} 
-function finishedline(){
-  push();
-  mazeendtime-=1
-  if(mazeendtime===0){
-   speed=0}
-  if (direction===1){
-  rotate(45)}
-  else rotate(-45)
-  if(speed===0){
-  for (let row = 0; row < NUM_ROWS; row++) {
-    for (let col = 0; col < NUM_COLS; col++) {
-      let fillValue = grid[row][col];
-      fill(fillValue);
-      square(x+col* squareSize, y+row * squareSize, squareSize);
-      print(x,y)
-    }
-  }}
-  pop();
-}
-// Using PeasyCam for 2D Camera Only
- 
-// By Default, mouse buttons are bound to camera movements (Rotate, Pan, Zoom)
-// Since it wasn't obvious how to disable this behavior through a library method,
-// I found it worked easily enough to modify the library. Comment out lines
-// 180-183 in p5.easycam.js to disable this behavior. Then if we are careful with
-// camera moves, we can keep everything lined up against the 2D plane.
-*/
 
 let easycam;
 let playerX, playerY;
@@ -128,26 +40,31 @@ function setup() {
 
 let tiles = []
 function draw() {
+  background(255);
   noStroke();
   //Level
-  background(0);
-  fill(255);
-  mazedraw()
-  finishedline();
-  mazecharacter()
-  print(get(windowWidth / 2, windowHeight / 2))
 
+  menu()
+  
+  if (button.mousePressed){
+     background(0); 
+     fill(255);
+    mazedraw()
+ /finishedline();
+  mazecharacter()
+ print(get(windowWidth / 2, windowHeight / 2))
+  }
 
 
 
   //Camera
   if (gameactive === true) {
-    easycam.panX(sqrt((5 * 5) / 2));
+    easycam.panX(sqrt((speed * speed) / 2));
     if (mouseIsPressed) {
-      easycam.panY(sqrt((5 * 5) / 2));
+      easycam.panY(sqrt((speed * speed) / 2));
     }
     else
-      easycam.panY(-sqrt((5 * 5) / 2));
+      easycam.panY(-sqrt((speed * speed) / 2));
   }
 }
 
@@ -232,26 +149,26 @@ function mazecharacter() {
 
 
   square(playerX, playerY, 10)
-  //if (playerX===tiles[201][0]&&playerY=== tiles[201][1]){
-
-  //}
 
   pop();
 }
 
-/* if ( get(playerX,playerY)==="BLUE")
- {
-   easycam.panX(sqrt((5*5)/2));
-   if(mouseIsPressed){
-   easycam.panY(sqrt((5*5)/2));
-   }
-   else
-   easycam.panY(-sqrt((5*5)/2));
-   if(mouseIsPressed){
-     playerX+=speed
-    }
-    else playerY-=speed
-    square(playerX,playerY,10)
- 
- }
- else */
+function menu() {
+  background(255);
+  rect(0,0,width,height);
+  textSize(100)
+  button=createButton("level one")
+  button.position(windowWidth/2,windowHeight/2-100);
+  button.mousePressed(speed=5)
+
+  button2=createButton("level two");
+  button2.position(windowWidth/2, windowHeight/2);
+  button2.mousePressed(speed=8);
+
+  button3=createButton("level three");
+  button3.position(windowWidth/2,windowHeight/2+100);
+  button3.mousePressed(speed=11 )
+}
+
+
+
