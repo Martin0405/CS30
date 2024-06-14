@@ -43,18 +43,13 @@ function draw() {
   background(255);
   noStroke();
   //Level
-
-  menu()
   
-  if (button.mousePressed){
-     background(0); 
-     fill(255);
+background(0); 
+  fill(255);
     mazedraw()
- /finishedline();
+finishedline();
   mazecharacter()
- print(get(windowWidth / 2, windowHeight / 2))
-  }
-
+keyPressed()
 
 
   //Camera
@@ -130,7 +125,7 @@ function mazecharacter() {
   rotate(45);
   fill(0, 0, 255)
   square(playerX, playerY)
-  if (get(windowWidth / 2, windowHeight / 2)[0] === 1 || get(windowWidth / 2, windowHeight / 2)[0] === 254 || get(windowWidth / 2, windowHeight / 2)[0] === 0) {
+  if (get(windowWidth / 2, windowHeight / 2)[0] === 0) {
     speed = 0   
      textFont(font);
     textSize(24);
@@ -142,6 +137,18 @@ function mazecharacter() {
     pop();
     gameactive = false;
   }
+  if (get(windowWidth / 2, windowHeight / 2)[0] === 1 || get(windowWidth / 2, windowHeight / 2)[0] === 254 ){
+    speed = 0   
+    textFont(font);
+   textSize(24);
+   fill(255, 0, 0)
+   push();
+   translate(playerX, playerY)
+   rotate(-45)
+   text('game win', 0,0);
+   pop();
+   gameactive = false;
+  }
   if (mouseIsPressed) {
     playerX += speed
   }
@@ -151,24 +158,33 @@ function mazecharacter() {
   square(playerX, playerY, 10)
 
   pop();
-}
-
-function menu() {
-  background(255);
-  rect(0,0,width,height);
-  textSize(100)
-  button=createButton("level one")
-  button.position(windowWidth/2,windowHeight/2-100);
-  button.mousePressed(speed=5)
-
-  button2=createButton("level two");
-  button2.position(windowWidth/2, windowHeight/2);
-  button2.mousePressed(speed=8);
-
-  button3=createButton("level three");
-  button3.position(windowWidth/2,windowHeight/2+100);
-  button3.mousePressed(speed=11 )
+  
 }
 
 
+function keyPressed() {
+  rotate(45);
+  textFont(font);
+  textSize(24);
+  fill(255, 0, 0)
+  if (keyIsPressed&&key === 'd') {
+    speed = 8
+    push();
+    translate(playerX, playerY)
+    rotate(-45);
+    text('speed 2', 0,-50);
+    pop();
+  }
+  if (keyIsPressed&&key === 'a') {
+     speed=5
+      push();
+      translate(playerX, playerY)
+      rotate(-45);
+      text('speed 1', 0,-50);
+      pop();
+  
+  }
 
+
+
+}
